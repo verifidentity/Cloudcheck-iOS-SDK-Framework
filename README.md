@@ -47,7 +47,7 @@ Use the mode that best suits your requirements.
 You can access the API via this SDK.
 
 To make a verify request you will have to construct a `CloudcheckSDK.CCVerifyRequest` instance.
-Once all the details are loaded into the request object simply call
+Once all of the details are loaded into the request object, simply call:
 
 ```swift
 let request = CCVerifyRequest(…)
