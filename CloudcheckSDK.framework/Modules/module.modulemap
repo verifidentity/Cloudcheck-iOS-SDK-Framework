@@ -1,0 +1,11 @@
+framework module CloudcheckSDK {
+  umbrella header "CloudcheckSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module CloudcheckSDK.Swift {
+    header "CloudcheckSDK-Swift.h"
+    requires objc
+}
