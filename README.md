@@ -35,7 +35,7 @@ CloudcheckAPI.loadAPI(key: "my_cloudcheck_key", secret: "my_cloudcheck_secret")
 The simplest way to perform a verification is to use the provided verification workflow
 
 ```swift
-let controller = CloudcheckViewController(mode: .live, reference: NSUUID().uuidString, delegate: nil)
+let controller = CloudcheckViewController(mode: .live, reference: NSUUID().uuidString, delegate: self)
 present(controller, animated: true, completion: nil)
 ```
 
