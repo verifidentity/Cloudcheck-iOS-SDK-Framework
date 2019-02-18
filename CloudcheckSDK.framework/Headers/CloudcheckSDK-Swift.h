@@ -185,6 +185,16 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 
 
+typedef SWIFT_ENUM(NSInteger, CCLiveStatus, closed) {
+  CCLiveStatusPending = 0,
+  CCLiveStatusMatch = 1,
+  CCLiveStatusReview = 2,
+  CCLiveStatusNoMatch = 3,
+  CCLiveStatusFailed = 4,
+  CCLiveStatusNotDone = 5,
+  CCLiveStatusAbandoned = 6,
+};
+
 
 SWIFT_CLASS("_TtC13CloudcheckSDK16CloudcheckResult")
 @interface CloudcheckResult : NSObject
