@@ -63,6 +63,14 @@ CloudcheckAPI.verify(request, completion: { result in
 })
 ```
 
+### Cloudcheck Live
+
+A Cloudcheck Live request must use our supplied view controllers. To start a Live request with a Capture Reference you can do so like this:
+
+```swift
+let controller = CloudcheckViewController(mode: .live, reference: myCaptureReference, delegate: self)
+present(controller, animated: true, completion: nil)
+```
 
 ## Author
 
