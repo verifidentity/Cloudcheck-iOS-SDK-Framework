@@ -1,3 +1,9 @@
+## 1.2.4
+- Added verificationReference as an option to pass to the live controller
+
+## 1.2.3
+- Improved data usage by downsampling images if necessary
+
 ## 1.2.2
 - Added loading indicator to live uploads
 - Added customisation of some display strings throughout the SDK
