@@ -1,3 +1,6 @@
+## 1.2.5
+- Pass the source errors through if there are any
+
 ## 1.2.4
 - Added verificationReference as an option to pass to the live controller
 
