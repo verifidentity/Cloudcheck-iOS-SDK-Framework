@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CloudcheckSDK'
-  s.version          = '1.2.5'
+  s.version          = '1.2.6'
   s.summary          = 'Provides a convenient interface for running the Cloudcheck verification process on iOS'
 
   s.description      = <<-DESC
