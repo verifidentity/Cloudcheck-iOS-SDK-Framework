@@ -25,4 +25,8 @@ This SDK also provides a simple interface for the API if you want to build your 
 
   s.vendored_frameworks = 'CloudcheckSDK.framework'
 
+  s.xcconfig = {
+    'VALID_ARCHS' =>  'arm64 x86_64',
+  }
+
 end

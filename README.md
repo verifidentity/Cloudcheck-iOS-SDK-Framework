@@ -72,6 +72,8 @@ let controller = CloudcheckViewController(mode: .live, reference: myCaptureRefer
 present(controller, animated: true, completion: nil)
 ```
 
+Note that Live only works on platforms that have a camera. If you try to run Live on a platform that doesn't have a camera, such as the iOS simulator, you will get an `Invalid Platform` error message.
+
 ## Author
 
 Verifidentity, support@verifidentity.com
