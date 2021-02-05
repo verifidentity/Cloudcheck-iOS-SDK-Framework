@@ -30,4 +30,7 @@ Pod::Spec.new do |s|
   s.xcconfig = {
     'VALID_ARCHS' => 'arm64 x86_64'
   }
+
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end
