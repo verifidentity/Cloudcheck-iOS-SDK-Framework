@@ -1,0 +1,422 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name CloudcheckSDK
+import AVFoundation
+@_exported import CloudcheckSDK
+import CommonCrypto
+import Foundation
+import Swift
+import UIKit
+public struct CCAustralianDriversLicence : Swift.Encodable {
+  public var state: CloudcheckSDK.CCAustralianState
+  public var number: Swift.String
+  public init(state: CloudcheckSDK.CCAustralianState, number: Swift.String)
+  public static func isValidNumber(_ number: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCLiveUploadResponse : Swift.Decodable {
+  public var success: Swift.Bool
+  public var message: Swift.String?
+  public var status: CloudcheckSDK.CCLiveStatus?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCLiveErrorResponse : Swift.Decodable, Swift.Error, Foundation.CustomNSError {
+  public var message: Swift.String
+  public var error: Swift.Int
+  public var localizedDescription: Swift.String {
+    get
+  }
+  public var errorCode: Swift.Int {
+    get
+  }
+  public static var errorDomain: Swift.String {
+    get
+  }
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCAustralianMedicare : Swift.Encodable {
+  public enum CardType : Swift.String, Swift.Encodable {
+    case blue
+    case green
+    case yellow
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var cardType: CloudcheckSDK.CCAustralianMedicare.CardType
+  public var cardNumber: Swift.String
+  public var cardExpiry: CloudcheckSDK.CCDate
+  public var individualReferenceNumber: Swift.String
+  public var nameLine1: Swift.String?
+  public var nameLine2: Swift.String?
+  public var nameLine3: Swift.String?
+  public var nameLine4: Swift.String?
+  public init(cardType: CloudcheckSDK.CCAustralianMedicare.CardType, cardNumber: Swift.String, cardExpiry: CloudcheckSDK.CCDate, individualReferenceNumber: Swift.String, nameLine1: Swift.String? = nil, nameLine2: Swift.String? = nil, nameLine3: Swift.String? = nil, nameLine4: Swift.String? = nil)
+  public static func isValidCardNumber(_ number: Swift.String) -> Swift.Bool
+  public static func isNameValid(_ name: Swift.String) -> Swift.Bool
+  public static func isReferenceNumberValid(_ number: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCName : Swift.Encodable {
+  public var given: Swift.String?
+  public var middle: Swift.String?
+  public var family: Swift.String?
+  public init(family: Swift.String? = nil, given: Swift.String? = nil, middle: Swift.String? = nil)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public enum CCAustralianState : Swift.String, Swift.Encodable {
+  case ACT
+  case NSW
+  case NT
+  case QLD
+  case SA
+  case TAS
+  case VIC
+  case WA
+  public typealias RawValue = Swift.String
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct CCAustralianBirthCertificate : Swift.Encodable {
+  public var registrationState: CloudcheckSDK.CCAustralianState
+  public var registrationNumber: Swift.String?
+  public var certificateNumber: Swift.String?
+  public var registrationDate: CloudcheckSDK.CCDate?
+  public var registrationYear: CloudcheckSDK.CCYear?
+  public var certificateIssueDate: CloudcheckSDK.CCDate?
+  public init(registrationState: CloudcheckSDK.CCAustralianState, registrationNumber: Swift.String? = nil, certificateNumber: Swift.String? = nil, registrationDate: CloudcheckSDK.CCDate? = nil, registrationYear: CloudcheckSDK.CCYear? = nil, certificateIssueDate: CloudcheckSDK.CCDate? = nil)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public protocol Field : Swift.Decodable {
+  var node: Swift.String { get }
+  var name: Swift.String { get }
+  var isRequired: Swift.Bool { get }
+  var notes: Swift.String? { get }
+  var isPresent: Swift.Bool { get }
+  func encode(to encoder: Swift.Encoder) throws
+  var isValid: Swift.Bool { get }
+  var displayValue: Swift.String? { get }
+  func cell(tableView: UIKit.UITableView, indexPath: Foundation.IndexPath, didChangeValue: @escaping () -> ()) -> UIKit.UITableViewCell
+}
+public struct CCChecked : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCAustralianVisa : Swift.Encodable {
+  public var countryOfIssue: Swift.String
+  public var passportNumber: Swift.String
+  public init(countryOfIssue: Swift.String, passportNumber: Swift.String)
+  public static func isValidContry(_ value: Swift.String) -> Swift.Bool
+  public static func isValidPassportNumber(_ value: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCAddress : Swift.Encodable {
+  public var street: Swift.String?
+  public var suburb: Swift.String?
+  public var postcode: Swift.String?
+  public var city: Swift.String?
+  public mutating func setStreet(number: Swift.String, name: Swift.String)
+  public init(street: Swift.String? = nil, suburb: Swift.String? = nil, city: Swift.String? = nil, postcode: Swift.String? = nil)
+  public init(number: Swift.String, name: Swift.String, suburb: Swift.String? = nil, city: Swift.String? = nil, postcode: Swift.String? = nil)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCNewZealandDriversLicence : Swift.Encodable {
+  public var number: Swift.String
+  public var version: Swift.String
+  public init(number: Swift.String, version: Swift.String)
+  public static func isValidNumber(_ value: Swift.String) -> Swift.Bool
+  public static func isValidVersion(_ value: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class CloudcheckResult : ObjectiveC.NSObject {
+  public var verificationReference: Swift.String?
+  public var liveReference: Swift.String?
+  public var completedLive: Swift.Bool
+  public var verificationSuccess: Swift.Bool
+  public var verificationPartialSuccess: Swift.Bool
+  public var liveStatus: CloudcheckSDK.CCLiveStatus?
+  public var sourceErrors: [CloudcheckSDK.CCSourceError]?
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+@objc public protocol CloudcheckViewControllerDelegate : AnyObject {
+  @objc func cloudcheckVerificationResult(_ result: CloudcheckSDK.CloudcheckResult)
+}
+@objc public enum CloudcheckVerificationMode : Swift.Int {
+  case verify
+  case live
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class CloudcheckViewController : UIKit.UIViewController, UIKit.UIAdaptivePresentationControllerDelegate {
+  @objc override dynamic public var prefersStatusBarHidden: Swift.Bool {
+    @objc get
+  }
+  @objc override dynamic public var preferredStatusBarStyle: UIKit.UIStatusBarStyle {
+    @objc get
+  }
+  @objc convenience public init(mode: CloudcheckSDK.CloudcheckVerificationMode, reference: Swift.String, delegate: CloudcheckSDK.CloudcheckViewControllerDelegate?)
+  @objc public init(mode: CloudcheckSDK.CloudcheckVerificationMode, reference: Swift.String, delegate: CloudcheckSDK.CloudcheckViewControllerDelegate?, config: CloudcheckSDK.CCConfig?, verificationReference: Swift.String?)
+  @objc public func presentationControllerDidDismiss(_ presentationController: UIKit.UIPresentationController)
+  @objc override dynamic public func viewDidLoad()
+  @objc deinit
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+}
+final public class CCSource : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+  @objc deinit
+}
+public struct CCVerifyResponse : Swift.Decodable {
+  public var verificationSuccess: Swift.Bool
+  public var verificationReference: Swift.String
+  public var reference: Swift.String
+  public var capture: CloudcheckSDK.CCCapture?
+  public var requestDate: Foundation.Date
+  public var verificatonPartialSuccess: Swift.Bool
+  public var verificationDate: Foundation.Date?
+  public var sourceErrors: [CloudcheckSDK.CCSourceError]?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCVerifyErrorResponse : Swift.Error, Swift.Decodable {
+  public var message: Swift.String
+  public var error: Swift.Int
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCSourceError : Swift.Error, Swift.Decodable {
+  public var name: Swift.String
+  public var error: Swift.String
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCDowJonesWatchlist : Swift.Encodable {
+  public var residencyCountry: Swift.String?
+  public var citizenshipCountry: Swift.String?
+  public var whitelist: Swift.String?
+  public var birthFromYear: Swift.String?
+  public var birthToYear: Swift.String?
+  public init(residencyCountry: Swift.String? = nil, citizenshipCountry: Swift.String? = nil, whitelist: Swift.String? = nil, birthFromYear: Swift.String? = nil, birthToYear: Swift.String? = nil)
+  public static func isValidWhitelist(_ value: Swift.String) -> Swift.Bool
+  public static func isValidYear(_ value: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCAustralianPassport : Swift.Encodable {
+  public enum Gender : Swift.String, Swift.Encodable {
+    case F
+    case M
+    case X
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var number: Swift.String
+  public var gender: CloudcheckSDK.CCAustralianPassport.Gender?
+  public init(number: Swift.String, gender: CloudcheckSDK.CCAustralianPassport.Gender? = nil)
+  public static func isValidNumber(_ number: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCAustralianNameChangeCertificate : Swift.Encodable {
+  public var state: CloudcheckSDK.CCAustralianState
+  public var oldGivenName: Swift.String?
+  public var oldFamilyName: Swift.String?
+  public var registrationNumber: Swift.String?
+  public var registrationDate: CloudcheckSDK.CCDate?
+  public var registrationYear: CloudcheckSDK.CCYear?
+  public var certificateNumber: Swift.String?
+  public var certificateIssuedDate: CloudcheckSDK.CCDate?
+  public init(state: CloudcheckSDK.CCAustralianState, oldGivenName: Swift.String? = nil, oldFamilyName: Swift.String? = nil, registrationNumber: Swift.String? = nil, registrationDate: CloudcheckSDK.CCDate? = nil, registrationYear: CloudcheckSDK.CCYear? = nil, certificateNumber: Swift.String? = nil, certificateIssuedDate: CloudcheckSDK.CCDate? = nil)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCNewZealandVehicleRegistration : Swift.Encodable {
+  public var numberPlate: Swift.String
+  public init(numberPlate: Swift.String)
+  public static func isValidNumberPlate(_ value: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers @objc public class CCConfig : ObjectiveC.NSObject {
+  public var companyName: Swift.String
+  public var verificationCompleteMessage: Swift.String
+  @objc public init(companyName: Swift.String, verificationCompleteMessage: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol DatePickable {
+  init?(string: Swift.String)
+  init(date: Foundation.Date)
+  var date: Foundation.Date? { get }
+}
+public struct CCAustralianCitizenship : Swift.Encodable {
+  public var acquisitionDate: CloudcheckSDK.CCDate
+  public var stockNumber: Swift.String
+  public init(acquisitionDate: CloudcheckSDK.CCDate, stockNumber: Swift.String)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCAustralianImmiCard : Swift.Encodable {
+  public var number: Swift.String
+  public init(number: Swift.String)
+  public static func isValidNumber(_ number: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCNewZealandBirthCertificate : Swift.Encodable {
+  public var number: Swift.String
+  public init(number: Swift.String)
+  public static func isValidNumber(_ value: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCAustralianCitizenshipByDescent : Swift.Encodable {
+  public var acquisitionDate: CloudcheckSDK.CCDate
+  public var stockNumber: Swift.String?
+  public init(acquisitionDate: CloudcheckSDK.CCDate, stockNumber: Swift.String? = nil)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCCapture : Swift.Decodable {
+  public var captureReference: Swift.String
+  public var items: [CloudcheckSDK.CCCaptureItem]
+  public var required: Swift.Bool
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCCaptureItem : Swift.Decodable {
+  public var instructions: Swift.String
+  public var name: Swift.String
+  public var identifier: Swift.String
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct CCYear : Swift.Encodable, CloudcheckSDK.DatePickable {
+  public init?(string: Swift.String)
+  public init(date: Foundation.Date)
+  public func encode(to encoder: Swift.Encoder) throws
+  public var date: Foundation.Date? {
+    get
+  }
+}
+extension String {
+  public var ccYear: CloudcheckSDK.CCYear? {
+    get
+  }
+}
+extension Date {
+  public var ccYear: CloudcheckSDK.CCYear {
+    get
+  }
+}
+public struct CCVerifyRequest {
+  public var details: CloudcheckSDK.CCVerifyDetails
+  public var reference: Swift.String
+  public var consent: Swift.Bool
+  public init(details: CloudcheckSDK.CCVerifyDetails, reference: Swift.String, consent: Swift.Bool)
+  public init(name: CloudcheckSDK.CCName, reference: Swift.String, consent: Swift.Bool)
+}
+extension CCVerifyRequest : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCVerifyDetails : Swift.Encodable {
+  public var address: CloudcheckSDK.CCAddress?
+  public var name: CloudcheckSDK.CCName
+  public var dateOfBirth: CloudcheckSDK.CCDate?
+  public var australianBirthCertificate: CloudcheckSDK.CCAustralianBirthCertificate?
+  public var australianCitizenship: CloudcheckSDK.CCAustralianCitizenship?
+  public var citizenshipByDescent: CloudcheckSDK.CCAustralianCitizenshipByDescent?
+  public var australianDriversLicence: CloudcheckSDK.CCAustralianDriversLicence?
+  public var immiCard: CloudcheckSDK.CCAustralianImmiCard?
+  public var medicare: CloudcheckSDK.CCAustralianMedicare?
+  public var nameChangeCertificate: CloudcheckSDK.CCAustralianNameChangeCertificate?
+  public var australianPassport: CloudcheckSDK.CCAustralianPassport?
+  public var australianVisa: CloudcheckSDK.CCAustralianVisa?
+  public var dowJonesWatchlist: CloudcheckSDK.CCDowJonesWatchlist?
+  public var newZealandBirthCertificate: CloudcheckSDK.CCNewZealandBirthCertificate?
+  public var newZealandCitizenship: CloudcheckSDK.CCNewZealandCitizenship?
+  public var newZealandPassport: CloudcheckSDK.CCNewZealandPassport?
+  public var newZealandDriversLicence: CloudcheckSDK.CCNewZealandDriversLicence?
+  public var newZealandVehicleRegistration: CloudcheckSDK.CCNewZealandVehicleRegistration?
+  public init(name: CloudcheckSDK.CCName, address: CloudcheckSDK.CCAddress? = nil, dateOfBirth: CloudcheckSDK.CCDate? = nil)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCDate : Swift.Encodable, CloudcheckSDK.DatePickable {
+  public init?(string: Swift.String)
+  public init(date: Foundation.Date)
+  public func encode(to encoder: Swift.Encoder) throws
+  public var date: Foundation.Date? {
+    get
+  }
+}
+extension String {
+  public var ccDate: CloudcheckSDK.CCDate? {
+    get
+  }
+}
+extension Date {
+  public var ccDate: CloudcheckSDK.CCDate {
+    get
+  }
+}
+public enum CloudcheckError : Swift.Error {
+  case couldNotEncodeParameters(key: Swift.String, value: Swift.String)
+  case unknownResponse
+  case consentNotGiven
+  case imageEncodingError
+}
+public enum CCResult<T> {
+  case error(_: Swift.Error)
+  case response(_: T)
+}
+@_hasMissingDesignatedInitializers public class CloudcheckAPI {
+  public static func loadAPI(key: Swift.String, secret: Swift.String)
+  public static func setSubdomain(_ subdomain: Swift.String?)
+  public static func verify(_ verifyRequest: CloudcheckSDK.CCVerifyRequest, username: Swift.String? = nil, completion: @escaping ((CloudcheckSDK.CCResult<CloudcheckSDK.CCVerifyResponse>) -> ())) throws
+  @objc deinit
+}
+@objc public enum CCLiveStatus : Swift.Int, Swift.Decodable, Swift.CustomStringConvertible {
+  case pending
+  case match
+  case review
+  case noMatch
+  case failed
+  case notDone
+  case abandoned
+  public var description: Swift.String {
+    get
+  }
+  public init(from decoder: Swift.Decoder) throws
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct CCNewZealandCitizenship : Swift.Encodable {
+  public var certificateNumber: Swift.String
+  public var countryOfBirth: Swift.String
+  public init(certificateNumber: Swift.String, countryOfBirth: Swift.String)
+  public static func isValidNumber(_ value: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct CCNewZealandPassport : Swift.Encodable {
+  public var number: Swift.String
+  public var expiry: CloudcheckSDK.CCDate
+  public init(number: Swift.String, expiry: CloudcheckSDK.CCDate)
+  public static func isValidNumber(_ value: Swift.String) -> Swift.Bool
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension CloudcheckSDK.CCAustralianMedicare.CardType : Swift.Equatable {}
+extension CloudcheckSDK.CCAustralianMedicare.CardType : Swift.Hashable {}
+extension CloudcheckSDK.CCAustralianMedicare.CardType : Swift.RawRepresentable {}
+extension CloudcheckSDK.CCAustralianState : Swift.Equatable {}
+extension CloudcheckSDK.CCAustralianState : Swift.Hashable {}
+extension CloudcheckSDK.CCAustralianState : Swift.RawRepresentable {}
+extension CloudcheckSDK.CloudcheckVerificationMode : Swift.Equatable {}
+extension CloudcheckSDK.CloudcheckVerificationMode : Swift.Hashable {}
+extension CloudcheckSDK.CloudcheckVerificationMode : Swift.RawRepresentable {}
+extension CloudcheckSDK.CCAustralianPassport.Gender : Swift.Equatable {}
+extension CloudcheckSDK.CCAustralianPassport.Gender : Swift.Hashable {}
+extension CloudcheckSDK.CCAustralianPassport.Gender : Swift.RawRepresentable {}
+extension CloudcheckSDK.CCLiveStatus : Swift.Equatable {}
+extension CloudcheckSDK.CCLiveStatus : Swift.Hashable {}
+extension CloudcheckSDK.CCLiveStatus : Swift.RawRepresentable {}
